@@ -16,6 +16,7 @@ model ChurchProfile {
   phone String
 
   contact ChurchContact?
+  people PersonProfile[]
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -43,4 +44,69 @@ model ChurchContact {
   updated_at DateTime @updatedAt
 
   @@map("church_contact")
+}
+
+model PersonProfile {
+  id String @id @default(uuid())
+  name String
+  status Boolean @default(true)
+  photo String
+  birth_date DateTime
+  cpf String
+  rg String
+  gender String
+  marital_status String
+  occupation String
+  father String
+  mother String
+
+  church ChurchProfile @relation(fields: [church_id], references: [id])
+  church_id String
+
+  contact PersonContact?
+  ministry PersonMinistry?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("person_profile")
+}
+
+model PersonContact {
+  id String @id @default(uuid())
+  email String
+  phone String
+  cep String
+  address String
+  street String
+  number String
+  district String
+  city String
+  state String
+  country String
+
+  person PersonProfile @relation(fields: [person_id], references: [id])
+  person_id String @unique
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("person_contact")
+}
+
+model PersonMinistry {
+  id String @id @default(uuid())
+  ministries String
+  departments String
+  titles String[]
+  functions String[]
+
+  converted Boolean
+  baptized_in_water Boolean
+
+  person PersonProfile @relation(fields: [person_id], references: [id])
+  person_id String @unique
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
