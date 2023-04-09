@@ -1,34 +1,34 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ChurchesService } from './churches.service';
+import { ChurchService } from './churches.service';
 import { CreateChurchDto } from './dto/create-church.dto';
 import { UpdateChurchDto } from './dto/update-church.dto';
 
 @Controller('churches')
-export class ChurchesController {
-  constructor(private readonly churchesService: ChurchesService) {}
+export class ChurchController {
+  constructor(private readonly churchService: ChurchService) {}
 
   @Post()
   create(@Body() createChurchDto: CreateChurchDto) {
-    return this.churchesService.create(createChurchDto);
+    return this.churchService.create(createChurchDto);
   }
 
   @Get()
   findAll() {
-    return this.churchesService.findAll();
+    return this.churchService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.churchesService.findOne(+id);
+    return this.churchService.findOne(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateChurchDto: UpdateChurchDto) {
-    return this.churchesService.update(+id, updateChurchDto);
+    return this.churchService.update(+id, updateChurchDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.churchesService.remove(+id);
+    return this.churchService.remove(+id);
   }
 }
