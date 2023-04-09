@@ -12,8 +12,6 @@ model ChurchProfile {
   name String
   photo String
   cnpj String
-  email String
-  phone String
 
   contact ChurchContact?
   people PersonProfile[]
