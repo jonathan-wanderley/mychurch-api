@@ -1,11 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateChurchDto } from './dto/create-church.dto';
 import { UpdateChurchDto } from './dto/update-church.dto';
+import { ChurchRepositoryInterface } from './interface/church.repository.interface';
 
 @Injectable()
 export class ChurchService {
+  constructor(
+    @Inject('ChurchRepositoryInterface')
+    private readonly churchRepository: ChurchRepositoryInterface,
+  ) {}
+
   create(createChurchDto: CreateChurchDto) {
-    return 'This action adds a new church';
+    return this.churchRepository.create(createChurchDto);
   }
 
   findAll() {
