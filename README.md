@@ -14,9 +14,10 @@ API da My Church - Um sistema moderno para gerenciamento de igrejas.
 - [ ] Cadastro e acompanhamento de multiplas igrejas
 - [ ] Cadastro e acompanhamento de multiplos membros de cada igreja
 - [ ] Controle de organização financeira das igrejas
+- [ ] Login e autênticação utilizando token JWT
 - [ ] Acompanhamento e emissão de relatorios
 - [ ] Link para auto-cadastro dos membros
-- [ ] Controle de cargos e titulos com devidas permissões dentro do sistema
+- [ ] Controle de cargos e titulos das pessoas cadastradas
 
 
 ---
