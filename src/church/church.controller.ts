@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ChurchService } from './churches.service';
+import { ChurchService } from './church.service';
 import { CreateChurchDto } from './dto/create-church.dto';
 import { UpdateChurchDto } from './dto/update-church.dto';
 
