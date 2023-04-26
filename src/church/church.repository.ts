@@ -10,7 +10,11 @@ export class ChurchRepository implements ChurchRepositoryInterface {
     constructor(private prisma: PrismaService) {}
 
     async create(data: CreateChurchDto): Promise<ChurchProfile> {    
-        return await this.prisma.churchProfile.create({ data });
+      return await this.prisma.churchProfile.create({ data });
+    }
+
+    async findAll(): Promise<ChurchProfile[]> {
+      return await this.prisma.churchProfile.findMany();
     }
 
 }

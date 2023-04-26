@@ -15,7 +15,7 @@ export class ChurchService {
   }
 
   findAll() {
-    return `This action returns all churches`;
+    return this.churchRepository.findAll();
   }
 
   findOne(id: number) {
