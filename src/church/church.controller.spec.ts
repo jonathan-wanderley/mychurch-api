@@ -13,6 +13,10 @@ const churchProfileExample: ChurchProfile = {
   updated_at: new Date()
 }
 
+const churchProfileList: ChurchProfile[] = [
+  churchProfileExample,
+]
+
 describe('ChurchController', () => {
   let churchController: ChurchController;
   let churchService: ChurchService;
@@ -25,7 +29,7 @@ describe('ChurchController', () => {
           provide: ChurchService,
           useValue: {
             create: jest.fn().mockResolvedValue(churchProfileExample),
-            findAll: jest.fn(),
+            findAll: jest.fn().mockResolvedValue(churchProfileList),
             findOne: jest.fn(),
             update: jest.fn(),
             remove: jest.fn(),
@@ -64,6 +68,22 @@ describe('ChurchController', () => {
       jest.spyOn(churchService, 'create').mockRejectedValueOnce(new Error())
 
       expect(churchController.create(body)).rejects.toThrowError();
+    })
+  })
+
+  describe('findAll', () => {
+    it('should return a church list sucessfully', async () => {
+      const result = await churchController.findAll();
+
+      expect(result).toEqual(churchProfileList);
+      expect(typeof result).toEqual('object');
+      expect(churchService.findAll).toHaveBeenCalledTimes(1);
+    })
+
+    it('should throw an exception', () => {
+      jest.spyOn(churchService, 'findAll').mockRejectedValueOnce(new Error());
+
+      expect(churchController.findAll()).rejects.toThrowError();
     })
   })
 });
