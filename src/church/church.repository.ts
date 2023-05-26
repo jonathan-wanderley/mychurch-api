@@ -17,4 +17,9 @@ export class ChurchRepository implements ChurchRepositoryInterface {
       return await this.prisma.churchProfile.findMany();
     }
 
+    async findOne(id: string): Promise<ChurchProfile> {
+      return await this.prisma.churchProfile.findUnique({
+        where: { id },
+      })
+    }
 }

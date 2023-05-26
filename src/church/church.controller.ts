@@ -19,7 +19,7 @@ export class ChurchController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.churchService.findOne(+id);
+    return this.churchService.findOne(id);
   }
 
   @Patch(':id')

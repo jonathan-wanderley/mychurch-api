@@ -18,8 +18,8 @@ export class ChurchService {
     return this.churchRepository.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} church`;
+  findOne(id: string) {
+    return this.churchRepository.findOne(id);
   }
 
   update(id: number, updateChurchDto: UpdateChurchDto) {
